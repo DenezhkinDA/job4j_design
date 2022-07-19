@@ -23,7 +23,9 @@ public class User {
         map.put(user1, new Object());
         map.put(user2, new Object());
         System.out.println("user1 hashCode: " + user1.hashCode());
-        System.out.println("user1 hashCode: " + user2.hashCode());
+        System.out.println("user2 hashCode: " + user2.hashCode());
+        System.out.println("user1 index: " + ((16 - 1) & user1.hashCode()));
+        System.out.println("user2 index: " + ((16 - 1) & user2.hashCode()));
         System.out.println(map);
     }
 }
