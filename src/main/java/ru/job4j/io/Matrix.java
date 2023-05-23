@@ -20,6 +20,6 @@ public class Matrix {
     }
 
     public static void main(String[] args) {
-        multiple(8);
+        multiple(9);
     }
 }
