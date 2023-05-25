@@ -22,4 +22,3 @@ public class LogFilter {
         log.forEach(System.out::println);
     }
 }
-
