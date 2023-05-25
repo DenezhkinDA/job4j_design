@@ -14,7 +14,6 @@ public class EvenNumberFile {
             String[] lines = text.toString().split(System.lineSeparator());
             for (String line : lines) {
                 int number = Integer.parseInt(line);
-                //int number = 0;
                 if (number % 2 == 0) {
                     System.out.println(line);
                 }
