@@ -24,9 +24,8 @@ public class Config {
                     String[] split = str.split("=", 2);
                     if (split[0].isEmpty() || split.length < 2 || split[1].isEmpty()) {
                         throw new IllegalArgumentException();
-                    } else {
-                        values.put(split[0], split[1]);
                     }
+                    values.put(split[0], split[1]);
                 }
             }
         } catch (IOException e) {
