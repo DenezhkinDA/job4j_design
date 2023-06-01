@@ -14,7 +14,7 @@ public class Analysis {
                 if (!check && (str.contains("400") || str.contains("500"))
                         || check && (str.contains("200") || str.contains("300"))) {
                     check = !check;
-                    builder.append(s[1]).append(check ? ";" : " \n");
+                    builder.append(s[1]).append(check ? ";" : System.lineSeparator());
                 }
                 str = in.readLine();
             }
