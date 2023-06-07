@@ -76,6 +76,11 @@ public class SimpleMap<K, V> implements Map<K, V> {
     }
 
     @Override
+    public boolean containsKey(K fileProperty) {
+        return false;
+    }
+
+    @Override
     public Iterator<K> iterator() {
         return new Iterator<K>() {
             private int exModCount = modCount;
