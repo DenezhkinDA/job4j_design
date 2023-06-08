@@ -11,23 +11,25 @@ import java.util.List;
 import java.util.Map;
 
 public class Dublicates extends SimpleFileVisitor<Path> {
-    Map<FileProperty, Path> map = new HashMap<>();
-    List<Path> result = new ArrayList<>();
-    FileProperty fileProperty;
-
+    private final Map<FileProperty, List<Path>> map = new HashMap<>();
 
     @Override
     public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
-        fileProperty = new FileProperty(attrs.size(), file.toFile().getName());
+        FileProperty fileProperty = new FileProperty(attrs.size(), file.toFile().getName());
         if (!map.containsKey(fileProperty)) {
-            map.put(fileProperty, file);
-        } else {
-            result.add(file);
+            map.put(fileProperty, new ArrayList<>());
         }
+        map.get(fileProperty).add(file);
         return FileVisitResult.CONTINUE;
     }
 
     public List<Path> getDublicates() {
+        List<Path> result = new ArrayList<>();
+        for (FileProperty f : map.keySet()) {
+            if (map.get(f).size() > 1) {
+                System.out.println(map.get(f));
+            }
+        }
         return result;
     }
 }
