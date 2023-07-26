@@ -34,7 +34,7 @@ public class ConsoleChat {
                 System.out.println("Задавайте вопрос: ");
                 answer = br.readLine();
                 log.add(answer);
-                running = running ? !answer.equals(STOP) : answer.equals(CONTINUE);
+                running = running ? !STOP.equals(answer) : CONTINUE.equals(answer);
             }
         } catch (IOException e) {
             e.printStackTrace();
