@@ -1,8 +1,6 @@
 package ru.job4j.io;
 
-import java.io.FileInputStream;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.*;
@@ -36,7 +34,7 @@ public class CSVReader {
                 }
                 filterCSV.add(strings.toString());
             }
-            if (argsName.get("out").equals("stdout")) {
+            if ("stdout".equals(argsName.get("out"))) {
                 printResult(filterCSV);
             } else {
                 printFile(filterCSV, argsName);
@@ -50,11 +48,17 @@ public class CSVReader {
         }
     }
     private static void printFile(List<String> forPrint, ArgsName argsName) throws IOException {
-        FileWriter writer = new FileWriter(argsName.get("out"));
-        for (String line : forPrint) {
-            writer.write(line + System.lineSeparator());
+        if ("stdout".equals(argsName.get("out"))) {
+            for (String string : forPrint) {
+                System.out.println(string);
+            }
+        } else {
+            try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(argsName.get("out"), true)))) {
+                forPrint.forEach(out::println);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
-        writer.close();
     }
 
     private static void validateArgs(String[] args, ArgsName argsName) {
@@ -68,7 +72,7 @@ public class CSVReader {
         if (!(args[1].endsWith(",") || args[1].endsWith(";"))) {
             throw new IllegalArgumentException("The separator must be a comma or semicolon");
         }
-        if (!(argsName.get("out").equals("stdout") || argsName.get("out").endsWith(".csv"))) {
+        if (!("stdout".equals(argsName.get("out")) || argsName.get("out").endsWith(".csv"))) {
             throw new IllegalArgumentException("The arguments for the output of the result are incorrect");
         }
         if (argsName.get("filter").endsWith("=")) {
