@@ -30,7 +30,7 @@ public class EchoServer {
                         server.close();
                     }
                     if (str.contains("msg=Any")) {
-                        System.out.println("What?");
+                        System.out.println("What");
                     }
                     out.flush();
                 }
