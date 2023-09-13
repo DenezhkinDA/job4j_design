@@ -36,7 +36,7 @@ public class EchoServer {
                 }
             }
         } catch (IOException e) {
-            LOG.error("Server is not available", e);
+            LOG.error(" Server is not available", e);
         }
     }
 }
